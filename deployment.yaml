@@ -47,10 +47,7 @@ spec:
     - type: ConfigChange
     - type: GitHub
       github:
-        secret: 7NcgnIFrWuayCM5gFKfOAy3apVa6me7mcBeCEEtm
-    - type: Generic
-      generic:
-        secret: 0bSyVUoOtMfbljkS8TrrmuknABF6yqHsfqhxtXpG
+        secret: "web-nginx-github-pull-secret"
   runPolicy: Serial
 ---
 kind: DeploymentConfig
@@ -184,3 +181,13 @@ spec:
     name: web-nginx-test
     weight: 100
   wildcardPolicy: None
+---
+kind: Secret
+apiVersion: v1
+metadata:
+  name: web-nginx-github-pull-secret
+  namespace: nginx-app
+data:
+  WebHookSecretKey: ZGE0NWNiZTZiNjg0MGY2YQ==
+type: Opaque
+
