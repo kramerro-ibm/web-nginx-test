@@ -4,7 +4,7 @@ metadata:
   annotations:
     description: Keeps track of changes in the application image
     openshift.io/generated-by: OpenShiftNewApp
-  name: web-nginx-test
+  name: gsproduct
   namespace: nginx-app
   labels:
     app: nginx-example
@@ -18,7 +18,7 @@ spec:
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: web-nginx-test
+  name: gsproduct
   namespace: nginx-app
   labels:
     app: nginx-example
@@ -29,7 +29,7 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'web-nginx-test:latest'
+      name: 'gsproduct:latest'
   strategy:
     type: Source
     sourceStrategy:
@@ -53,7 +53,7 @@ spec:
 kind: DeploymentConfig
 apiVersion: apps.openshift.io/v1
 metadata:
-  name: web-nginx-test
+  name: gsproduct
   namespace: nginx-app
   labels:
     app: nginx-example
@@ -80,19 +80,19 @@ spec:
         from:
           kind: ImageStreamTag
           namespace: nginx-app
-          name: 'web-nginx-test:latest'
+          name: 'gsproduct:latest'
     - type: ConfigChange
   replicas: 1
   revisionHistoryLimit: 10
   test: false
   selector:
-    name: web-nginx-test
+    name: gsproduct
   template:
     metadata:
-      name: web-nginx-test
+      name: gsproduct
       creationTimestamp: null
       labels:
-        name: web-nginx-test
+        name: gsproduct
       annotations:
         openshift.io/generated-by: OpenShiftNewApp
     spec:
@@ -136,7 +136,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: web-nginx-test
+  name: gsproduct
   namespace: nginx-app
   labels:
     app: nginx-example
@@ -159,12 +159,12 @@ spec:
   ipFamilyPolicy: SingleStack
   sessionAffinity: None
   selector:
-    name: web-nginx-test
+    name: gsproduct
 ---
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: web-nginx-test
+  name: gsproduct
   namespace: nginx-app
   labels:
     app: nginx-example
@@ -178,7 +178,7 @@ metadata:
 spec:
   to:
     kind: Service
-    name: web-nginx-test
+    name: gsproduct
     weight: 100
   wildcardPolicy: None
 ---
