@@ -4,7 +4,7 @@ metadata:
   annotations:
     description: Keeps track of changes in the application image
     openshift.io/generated-by: OpenShiftNewApp
-  name: gsproduct
+  name: gsproduct5
   namespace: nginx-app
   labels:
     app: nginx-example
@@ -18,7 +18,7 @@ spec:
 kind: BuildConfig
 apiVersion: build.openshift.io/v1
 metadata:
-  name: gsproduct
+  name: gsproduct5
   namespace: nginx-app
   labels:
     app: nginx-example
@@ -29,7 +29,7 @@ spec:
   output:
     to:
       kind: ImageStreamTag
-      name: 'gsproduct:latest'
+      name: 'gsproduct5:latest'
   strategy:
     type: Source
     sourceStrategy:
@@ -53,7 +53,7 @@ spec:
 kind: DeploymentConfig
 apiVersion: apps.openshift.io/v1
 metadata:
-  name: gsproduct
+  name: gsproduct5
   namespace: nginx-app
   labels:
     app: nginx-example
@@ -80,19 +80,19 @@ spec:
         from:
           kind: ImageStreamTag
           namespace: nginx-app
-          name: 'gsproduct:latest'
+          name: 'gsproduct5:latest'
     - type: ConfigChange
   replicas: 1
   revisionHistoryLimit: 10
   test: false
   selector:
-    name: gsproduct
+    name: gsproduct5
   template:
     metadata:
-      name: gsproduct
+      name: gsproduct5
       creationTimestamp: null
       labels:
-        name: gsproduct
+        name: gsproduct5
       annotations:
         openshift.io/generated-by: OpenShiftNewApp
     spec:
@@ -136,7 +136,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: gsproduct
+  name: gsproduct5
   namespace: nginx-app
   labels:
     app: nginx-example
@@ -159,12 +159,12 @@ spec:
   ipFamilyPolicy: SingleStack
   sessionAffinity: None
   selector:
-    name: gsproduct
+    name: gsproduct5
 ---
 kind: Route
 apiVersion: route.openshift.io/v1
 metadata:
-  name: gsproduct
+  name: gsproduct5
   namespace: nginx-app
   labels:
     app: nginx-example
@@ -178,7 +178,7 @@ metadata:
 spec:
   to:
     kind: Service
-    name: gsproduct
+    name: gsproduct5
     weight: 100
   wildcardPolicy: None
 ---
